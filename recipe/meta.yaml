@@ -10,7 +10,7 @@ source:
   sha256: 47c034e169820a9633770eece0e0fdd8d4a744e09b81da2af8c2608a4625811e
 
 build:
-  number: 0
+  number: 2
   skip: True  # [win]
   run_exports:
     - {{ pin_subpackage('libxsmm', max_pin='x') }}
