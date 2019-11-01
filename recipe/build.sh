@@ -1,4 +1,5 @@
 #!/bin/bash
+ls ${PREFIX}/lib/libgomp.so.1
 if [[ $HOST == *"apple"* ]]; then
   make -j${CPU_COUNT} PREFIX=${PREFIX}
 else
