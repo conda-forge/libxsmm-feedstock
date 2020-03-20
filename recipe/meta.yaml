@@ -24,7 +24,8 @@ requirements:
   host:
     - libblas
     - libcblas
-    - libgcc-ng  # [linux]
+    - liblapack
+    - liblapacke
 
 test:
   commands:
