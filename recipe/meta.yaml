@@ -24,6 +24,8 @@ requirements:
   host:
     - libblas
     - libcblas
+    - liblapack
+    - liblapacke
 
 test:
   commands:
