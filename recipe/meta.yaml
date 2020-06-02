@@ -21,10 +21,10 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
     - make
-    - git
   host:
-    - libblas
-    - liblapack
+    - libblas  # [linux]
+  run:
+    - _openmp_mutex  # [linux]
 
 test:
   commands:
