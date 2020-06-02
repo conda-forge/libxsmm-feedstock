@@ -22,7 +22,7 @@ requirements:
     - {{ compiler('fortran') }}
     - make
   host:
-    - libblas  # [linux]
+    - libblas
   run:
     - _openmp_mutex  # [linux]
 
