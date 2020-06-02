@@ -1,5 +1,5 @@
 #!/bin/bash
-export CFLAGS="${CFLAGS} -lblas"
+export LDFLAGS="${LDFLAGS} -lblas"
 
 if [[ $HOST == *"apple"* ]]; then
   make -j${CPU_COUNT} PREFIX=${PREFIX}
