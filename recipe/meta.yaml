@@ -1,5 +1,5 @@
 {% set name = "libxsmm" %}
-{% set version = "1.13" %}
+{% set version = "1.14" %}
 
 package:
   name: {{ name|lower }}
@@ -7,10 +7,10 @@ package:
 
 source:
   url: https://github.com/hfp/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 47c034e169820a9633770eece0e0fdd8d4a744e09b81da2af8c2608a4625811e
+  sha256: 9c0af4509ea341d1ee2c6c19fc6f19289318c3bd4b17844efeb9e7f9691abf76
 
 build:
-  number: 3
+  number: 0
   skip: True  # [win]
   run_exports:
     - {{ pin_subpackage('libxsmm', max_pin='x') }}
@@ -24,6 +24,8 @@ requirements:
   host:
     - libblas
     - libcblas
+    - liblapack
+    - liblapacke
 
 test:
   commands:
