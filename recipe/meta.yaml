@@ -21,11 +21,10 @@ requirements:
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
     - make
+    - git
   host:
     - libblas
-    - libcblas
     - liblapack
-    - liblapacke
 
 test:
   commands:
