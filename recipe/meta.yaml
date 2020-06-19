@@ -1,5 +1,5 @@
 {% set name = "libxsmm" %}
-{% set version = "1.15" %}
+{% set version = "1.16" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/hfp/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 499e5adfbf90cd3673309243c2b56b237d54f86db2437e1ac06c8746b55ab91c
+  sha256: 4983a3e1c006ca0054daa1c5582fef5989964d732f545b79ed01909459cf75de
 
 build:
-  number: 1
-  skip: True  # [not linux]
+  number: 0
+  skip: true  # [not linux]
   run_exports:
     - {{ pin_subpackage('libxsmm', max_pin='x') }}
 
@@ -47,7 +47,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.md
-  summary: 'Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives.'
+  summary: Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives.
 
   description: |
     LIBXSMM is a library for specialized dense and sparse matrix operations 
