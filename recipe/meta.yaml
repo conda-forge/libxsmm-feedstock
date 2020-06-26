@@ -1,5 +1,5 @@
 {% set name = "libxsmm" %}
-{% set version = "1.16" %}
+{% set version = "1.16.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/hfp/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 4983a3e1c006ca0054daa1c5582fef5989964d732f545b79ed01909459cf75de
+  sha256: 93dc7a3ec40401988729ddb2c6ea2294911261f7e6cd979cf061b5c3691d729d
 
 build:
   number: 0
