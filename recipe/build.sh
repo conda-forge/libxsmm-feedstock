@@ -2,7 +2,8 @@
 export LDFLAGS="${LDFLAGS} -lblas"
 
 if [[ $HOST == *"apple"* ]]; then
-  make -j 1 PREFIX=${PREFIX}
+  export CFLAGS="${CFLAGS} -fopenmp"
+  make -j${CPU_COUNT} PREFIX=${PREFIX}
 else
   make -j${CPU_COUNT} PREFIX=${PREFIX} STATIC=0
 fi
