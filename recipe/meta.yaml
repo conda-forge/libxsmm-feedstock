@@ -20,12 +20,13 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
     - make
     - git
   host:
     - libblas
   run:
-    - _openmp_mutex  # [linux]
 
 test:
   commands:
