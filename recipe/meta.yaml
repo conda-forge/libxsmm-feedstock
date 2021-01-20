@@ -10,8 +10,8 @@ source:
   sha256: 93dc7a3ec40401988729ddb2c6ea2294911261f7e6cd979cf061b5c3691d729d
 
 build:
-  number: 1
-  skip: true  # [not linux]
+  number: 2
+  skip: true  # [win]
   run_exports:
     - {{ pin_subpackage('libxsmm', max_pin='x') }}
 
@@ -20,12 +20,13 @@ requirements:
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
     - {{ compiler('fortran') }}
+    - llvm-openmp  # [osx]
+    - libgomp      # [linux]
     - make
     - git
   host:
     - libblas
   run:
-    - _openmp_mutex  # [linux]
 
 test:
   commands:
