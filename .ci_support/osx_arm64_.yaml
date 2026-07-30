@@ -26,7 +26,3 @@ zip_keys:
 - - c_compiler_version
   - cxx_compiler_version
   - fortran_compiler_version
-
-CONDA_BUILD_SYSROOT:
-- /Users/krack/github/mkrack/conda-forge/libxsmm-feedstock/SDKs/MacOSX11.0.sdk
-
