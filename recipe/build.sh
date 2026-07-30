@@ -1,14 +1,13 @@
 #!/bin/bash
-export LDFLAGS="${LDFLAGS} -lblas"
+set -ex
 
-if [[ $HOST == *"apple"* ]]; then
-  export LDFLAGS="${LDFLAGS} -lomp"
-  export CPU_COUNT=1
-  export TIMER_DELTA=-1
-  make -j${CPU_COUNT} PREFIX=${PREFIX}
-else
-  make -j${CPU_COUNT} PREFIX=${PREFIX} STATIC=0
-fi
-make -j${CPU_COUNT} install
-make -j${CPU_COUNT} test
-make -j${CPU_COUNT} test-all
+mv BUILD BUILD.bak
+
+cmake -B build -S . \
+  ${CMAKE_ARGS} \
+  -DBUILD_SHARED_LIBS="ON" \
+  -DBUILD_TESTING="OFF" \
+  -DLIBXSMM_FORTRAN="ON" \
+  -GNinja
+cmake --build build --parallel "${CPU_COUNT}"
+cmake --install build
