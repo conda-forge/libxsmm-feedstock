@@ -1,52 +1,70 @@
-About libxsmm
-=============
+About libxsmm-feedstock
+=======================
 
-Home: https://github.com/hfp/libxsmm
+Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libxsmm-feedstock/blob/main/LICENSE.txt)
+
+Home: https://github.com/libxsmm/libxsmm
 
 Package license: BSD-3-Clause
 
-Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/libxsmm-feedstock/blob/master/LICENSE.txt)
+Summary: LIBXSMM is high performance library for small dense and sparse linear algebra opertions
 
-Summary: Library targeting Intel Architecture for specialized dense and sparse matrix operations, and deep learning primitives.
+Development: https://github.com/libxsmm/libxsmm
 
-Development: https://github.com/hfp/libxsmm
+Documentation: https://libxsmm.readthedocs.io/
 
-Documentation: https://libxsmm.readthedocs.io
-
-LIBXSMM is a library for specialized dense and sparse matrix operations
-as well as for deep learning primitives such as small convolutions
-targeting Intel Architecture.
-
+LIBXSMM is high performance library for small dense and sparse linear
+algebra opertions incl. GEMM and elementwise primities often seen in deep
+learning applications. It also serves as reference implementation of Tensor
+Processing Primitives (TPP), a programming abstraction for efficient and
+portable deep learning and HPC workloads. With version 2.0, LIBXSMM focuses on
+providing a complete and architecture-portable set of TPPs (small dense and
+sparse matrix operations as well as element-wise, GEMM, and BRGEMM primitives)
+from which higher-level operators such as convolutions, fully-connected layers,
+normalization, and pooling are composed. LIBXSMM targets Intel Architecture with
+Intel SSE, Intel AVX, Intel AVX2, Intel AVX‑512 (with VNNI and Bfloat16), and
+Intel AMX (Advanced Matrix Extensions), AArch64 (NEON, SVE, and SME), RISC‑V
+(RVV), and PowerPC 64‑bit little‑endian (POWER10 with VSX and MMA).
+Code generation is mainly based on Just‑In‑Time (JIT) code specialization for
+compiler-independent performance (matrix multiplications, matrix transpose/copy,
+sparse functionality, and tensor primitives).
 
 Current build status
 ====================
 
 
-<table>
+<table><tr>
+    <td>GitHub Actions</td>
+    <td>
+      <a href="https://github.com/conda-forge/libxsmm-feedstock/actions/workflows/conda-build.yml">
+        <img src="https://github.com/conda-forge/libxsmm-feedstock/actions/workflows/conda-build.yml/badge.svg?event=push&branch=main">
+      </a>
+    </td>
+  </tr>
     
   <tr>
     <td>Azure</td>
     <td>
       <details>
         <summary>
-          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7616&branchName=master">
-            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libxsmm-feedstock?branchName=master">
+          <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7616&branchName=main">
+            <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libxsmm-feedstock?branchName=main">
           </a>
         </summary>
         <table>
           <thead><tr><th>Variant</th><th>Status</th></tr></thead>
           <tbody><tr>
-              <td>linux_64</td>
+              <td>osx_64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7616&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libxsmm-feedstock?branchName=master&jobName=linux&configuration=linux_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7616&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libxsmm-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_64_" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>osx_64</td>
+              <td>osx_arm64</td>
               <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7616&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libxsmm-feedstock?branchName=master&jobName=osx&configuration=osx_64_" alt="variant">
+                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7616&branchName=main">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/libxsmm-feedstock?branchName=main&jobName=osx&configuration=osx%20osx_arm64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -74,16 +92,41 @@ conda config --add channels conda-forge
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `libxsmm` can be installed with:
+Once the `conda-forge` channel has been enabled, `libxsmm` can be installed with `conda`:
 
 ```
 conda install libxsmm
 ```
 
-It is possible to list all of the versions of `libxsmm` available on your platform with:
+or with `mamba`:
+
+```
+mamba install libxsmm
+```
+
+It is possible to list all of the versions of `libxsmm` available on your platform with `conda`:
 
 ```
 conda search libxsmm --channel conda-forge
+```
+
+or with `mamba`:
+
+```
+mamba search libxsmm --channel conda-forge
+```
+
+Alternatively, `mamba repoquery` may provide more information:
+
+```
+# Search all versions available on your platform:
+mamba repoquery search libxsmm --channel conda-forge
+
+# List packages depending on `libxsmm`:
+mamba repoquery whoneeds libxsmm --channel conda-forge
+
+# List dependencies of `libxsmm`:
+mamba repoquery depends libxsmm --channel conda-forge
 ```
 
 
@@ -101,17 +144,19 @@ for each of the installable packages. Such a repository is known as a *feedstock
 A feedstock is made up of a conda recipe (the instructions on what and how to build
 the package) and the necessary configurations for automatic building using freely
 available continuous integration services. Thanks to the awesome service provided by
-[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/)
-and [TravisCI](https://travis-ci.com/) it is possible to build and upload installable
-packages to the [conda-forge](https://anaconda.org/conda-forge)
-[Anaconda-Cloud](https://anaconda.org/) channel for Linux, Windows and OSX respectively.
+[Azure](https://azure.microsoft.com/en-us/services/devops/), [GitHub](https://github.com/),
+[CircleCI](https://circleci.com/), [AppVeyor](https://www.appveyor.com/),
+[Drone](https://cloud.drone.io/welcome), and [TravisCI](https://travis-ci.com/)
+it is possible to build and upload installable packages to the
+[conda-forge](https://anaconda.org/conda-forge) [anaconda.org](https://anaconda.org/)
+channel for Linux, Windows and OSX respectively.
 
-To manage the continuous integration and simplify feedstock maintenance
+To manage the continuous integration and simplify feedstock maintenance,
 [conda-smithy](https://github.com/conda-forge/conda-smithy) has been developed.
 Using the ``conda-forge.yml`` within this repository, it is possible to re-render all of
 this feedstock's supporting files (e.g. the CI configuration files) with ``conda smithy rerender``.
 
-For more information please check the [conda-forge documentation](https://conda-forge.org/docs/).
+For more information, please check the [conda-forge documentation](https://conda-forge.org/docs/).
 
 Terminology
 ===========
@@ -138,7 +183,7 @@ merged, the recipe will be re-built and uploaded automatically to the
 everybody to install and use from the `conda-forge` channel.
 Note that all branches in the conda-forge/libxsmm-feedstock are
 immediately built and any created packages are uploaded, so PRs should be based
-on branches in forks and branches in the main repository should only be used to
+on branches in forks, and branches in the main repository should only be used to
 build distinct package versions.
 
 In order to produce a uniquely identifiable distribution:
@@ -153,4 +198,5 @@ Feedstock Maintainers
 
 * [@hfp](https://github.com/hfp/)
 * [@jan-janssen](https://github.com/jan-janssen/)
+* [@mkrack](https://github.com/mkrack/)
 
