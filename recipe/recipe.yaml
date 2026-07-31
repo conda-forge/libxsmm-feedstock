@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: "libxsmm"
-  version: "2.0.0"
+  version: "2.1.0"
 
 package:
   name: ${{ name }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://github.com/${{ name }}/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: 7e532dc5520f864ce6d7f44f3fd50365e3edb23da97dbdc54fd53845d86a290b
+  sha256: 704ed8f99b61a767798ed1ee1cadc5d185ca449f466a2bae37930f68c65961e9
 
 build:
   number: 0
@@ -33,9 +33,9 @@ tests:
         - ${{ name }}_binaryexport_generator
         - ${{ name }}_gemm_generator
       include:
-        - ${{ name }}.f
-        - ${{ name }}.h
-        - ${{ name }}.mod
+        - ${{ name }}/${{ name }}.f
+        - ${{ name }}/${{ name }}.h
+        - ${{ name }}/${{ name }}.mod
       lib:
         - ${{ name }}
         - ${{ name }}f
