@@ -33,9 +33,9 @@ tests:
         - ${{ name }}_binaryexport_generator
         - ${{ name }}_gemm_generator
       include:
-        - ${{ name }}.f
-        - ${{ name }}.h
-        - ${{ name }}.mod
+        - ${{ name }}/${{ name }}.f
+        - ${{ name }}/${{ name }}.h
+        - ${{ name }}/${{ name }}.mod
       lib:
         - ${{ name }}
         - ${{ name }}f
